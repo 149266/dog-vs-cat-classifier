@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.pyc
+
+# Virtual environments
+venv/
+dat158/
+
+# Jupyter checkpoints
+*.ipynb_checkpoints/
+
+# Modellfiler
+*.h5
+*.hdf5
+
+# Logs
+logs/
