@@ -125,3 +125,7 @@ disp.plot(cmap=plt.cm.Blues)
 plt.show()
 
 print(classification_report(y_true, y_pred, target_names=['Cat', 'Dog']))
+
+# -- Etter at du har trent modellen --
+model.save('model.h5')
+print("Model saved successfully!")

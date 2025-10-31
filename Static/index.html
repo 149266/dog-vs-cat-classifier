@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/static/style.css">
+  <title>Is it a dog or cat</title>
+</head>
+<body>
+  <h1>Upload an image</h1>
+  <input type="file" id="imageInput">
+  <button onclick="uploadImage()">Classify</button>
+  <p id="result"></p>
+  
+ <div id="preview-container">
+    <img id="preview" src="#" alt="Uploaded Image" style="display:none;">
+  </div>
+
+  <script>
+    async function uploadImage() {
+  const fileInput = document.getElementById('imageInput');
+  const file = fileInput.files[0];
+  if (!file) {
+    alert("Please select a file first!");
+    return;
+  }
+
+  const preview = document.getElementById('preview');
+  preview.src = URL.createObjectURL(file);  
+  preview.style.display = 'block';          
+
+  
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const response = await fetch('http://127.0.0.1:5000/predict', {
+        method: 'POST',
+        body: formData
+      });
+
+    const data = await response.json();
+    document.getElementById('result').innerText = `Prediction: ${data.prediction}`;
+    }
+  </script>
+</body>
+</html>
